@@ -85,7 +85,8 @@ function bresenham(dots) {
     return reverse_reflection(m,tempdots,change)
 }
 
-exports = {bresenham};
 // let points = bresenham([[10,20],[50,70]]);
 // console.log( points);
+
+// exports = {bresenham};
 

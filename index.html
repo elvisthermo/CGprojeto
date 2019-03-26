@@ -6,6 +6,7 @@
     <script src="libs/d3.js"></script>
     <script src="libs/jquery.js"></script>
     <script src="functions/main.js"></script>
+    <script src="functions/frameBuffer.js"></script>
 </head>
 <body>
 <style>
@@ -16,25 +17,19 @@
         background-color: white;
     }
 </style>
-    <svg width="600px" height="600px"></svg>
+    <svg width="500px" height="500px"></svg>
 <script>
+        // const  frammeBuffer = require("functions/frameBuffer.js");
+
         let svg = d3.select("svg");
         let tam = 10;
         let color = "black";
 
-        // canvas();
-        // draw_pixel(100,20);
-        // draw_pixel(500,250);
 
-        //bresenham(0, 0,  600, 600);
-        // bresenham(600, 0,  0, 600);
-        // bresenham(300, 0,  300, 600);
-        // bresenham(0, 300,  600, 300);
-        //
-        // MidpointCircle(280,300,300);
+
         let x = 0;
-        while(x<600){
-            for(let y = 0;y<600;y+=10){
+        while(x<500){
+            for(let y = 0;y<500;y+=10){
                 svg.append("rect")
                     .attr("width",10)
                     .attr("height",10)
@@ -49,50 +44,7 @@
             x+=10;
         }
 
-        // let a, b;
-        // a = 20;
-        // b = 50;
-        //
-        // let  teste = d3.select('[id=",id10,20"]');
-        // console.log(d3.select('[id=",id10,20"]'));
-        // console.log(teste);
-
-
-        let width = 500;
-        let height = 500;
-        // let postionX ;
-        // let postionX ;
-        // let color;
-
-
-
-        // class  frammeBuffer {
-        //     constructor(width, height) {
-        //         this.matriz = [];
-        //         this.width = width;
-        //         this.height = height;
-        //
-        //     }
-        //
-        //     static matriz() {
-        //         let x = 0;
-        //         while(x<this.width){
-        //             this.matriz.push(x);
-        //             for(let y = 0;y<this.height;y+=10){
-        //                 this.matriz[x].push(y);
-        //             }
-        //             x+=10;
-        //         }
-        //         console.log(this.matriz);
-        //         return this.matriz;
-        //
-        //     }
-        //
-        //     }
-
-        // let p1 = new frammeBuffer(width, height);
-        //
-        // p1.matriz();
+        let bufffer = new frammeBuffer(50,50);
 
 
 
@@ -246,10 +198,6 @@
 
         console.log( points);
 
-
-
-
-
         // function CirclePoints(x, y,vx,vy){
         //     draw_pixel(vx + x,vy + y);
         //     draw_pixel(vx + x,vy +  -y);
@@ -279,12 +227,6 @@
         //         CirclePoints(x, y,valueX,valueY);
         //     }
         // }
-        //
-
-    // bresenham(10,100,200,300);
-    // bresenham(10,100,300,300);
-    // bresenham(100,0,100,500);
-
 
 
 </script>

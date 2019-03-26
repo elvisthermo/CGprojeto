@@ -32,4 +32,4 @@ class  frammeBuffer {
 
 }
 
-export {frammeBuffer};
+// exports = {frammeBuffer};

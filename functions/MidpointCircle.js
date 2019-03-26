@@ -28,4 +28,4 @@ function MidpointCircle(radius, valueX,valueY){
     }
 }
 
-exports = {MidpointCircle,CirclePoints};
+// exports = {MidpointCircle,CirclePoints};
