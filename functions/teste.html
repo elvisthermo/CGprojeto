@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../libs/d3.js"></script>
+</head>
+<body>
+<script>
+    let pixel_lenght = 10;
+    class  frammeBuffer {
+        constructor(width, height) {
+            this.matriz = [];
+            this.width = width;
+            this.height = height;
+
+            this.createMat();
+
+        }
+        createMat() {
+            this.matriz;
+
+            for (let i = 0; i < this.width ; i+=pixel_lenght) {
+                let lista = [];
+                for(let y = 0; y<this.height;y+=pixel_lenght){
+                    this.matriz.push([i,y,"white"]);
+                }
+            }
+
+            return this.matriz;
+        }
+
+        getPixel(x,y){
+            for (let i = 0; i < this.matriz.length; i++) {
+                    if(this.matriz[i][0]==x){
+                        if(this.matriz[i][1]===y){
+                            return this.matriz[i][2];
+                        }
+                    }
+            }
+        }
+
+        putPixel(x,y,color){
+            for (let i = 0; i < this.matriz.length; i++) {
+                if(this.matriz[i][0]==x){
+                    if(this.matriz[i][1]===y){
+                        return this.matriz[i][2] = color;
+                    }
+                }
+            }
+        }
+
+    }
+
+    let mat = new frammeBuffer(500, 500);
+    mat.getPixel(60,400);
+    mat.putPixel(60,400,"red");
+    mat.getPixel(60,400);
+
+    mat.putPixel(0,400,"pink");
+
+    function CirclePoints(x, y,vx,vy){
+        mat.putPixel(vx + x,vy + y,"red");
+        mat.putPixel(vx + x,vy +  -y,"red");
+        mat.putPixel(vx + -x,vy +  y,"red");
+        mat.putPixel(vx + -x,vy +  -y,"red");
+        mat.putPixel(vx + y,vy +  x,"red");
+        mat.putPixel(vx + y,vy +  x,"red");
+        mat.putPixel(vx + y,vy +  -x,"red");
+        mat.putPixel(vx + -y,vy + x,"red");
+        mat.putPixel(vx + -y,vy + -x,"red");
+    }
+
+    function MidpointCircle(radius, valueX,valueY){
+        let x = 0;
+        let y = radius;
+        let d = pixel_lenght - radius;
+
+        CirclePoints(x,y,valueX,valueY);
+        while(y > x) {
+            if (d < 0)
+                d += 2 * x + 3;
+            else {
+                d += 2 * (x - y) + 5;
+                y-=pixel_lenght;
+            }
+            x+=pixel_lenght;
+            CirclePoints(x, y,valueX,valueY);
+        }
+    }
+
+    //console.log("esse teste",mat.matriz);
+
+    let svg = d3.select("body").append("svg")
+        .attr("width",500)
+        .attr("height",500)
+        .append("rect")
+        .attr("width",500)
+        .attr("height",500)
+        .attr("x",0)
+        .attr("y",0);
+
+    let putpixel = (x,y,color) => {
+        d3.select("svg")
+            .append("rect")
+            .attr("width",pixel_lenght)
+            .attr("height",pixel_lenght)
+            .attr("x",x)
+            .attr("y",y)
+            .attr("fill",color)
+            .attr("stroke","black")
+            .style("stroke-width","0.2px");
+    };
+    //
+    // for (let i = 0; i <500 ; i+=pixel_lenght) {
+    //     for (let j = 0; j < 500; j+=pixel_lenght) {
+    //         if(i>j){
+    //             mat.putPixel(i,j,"blue");
+    //         }
+    //     }
+    // }
+
+    function reflection(m,dots) {
+        if(!Array.isArray(dots)) return;
+
+        [[x1,y1],[x2,y2]] = dots;
+        let change = [false,false,false];
+
+
+        if(m>1 || m<-1) {
+            let temp = x1;
+            x1 = y1
+            y1 = temp;
+
+            temp = x2
+            x2 = y2
+            y2 = temp;
+
+            change[2] = true;
+        }
+
+        if(x1 > x2) {
+            x1 *=-1
+            x2 *=-1
+            change[0] = true;
+        }
+
+        if(y1 > y2) {
+            y1 *=-1
+            y2 *=-1
+            change[1] = true;
+        }
+
+        return [[[x1,y1],[x2,y2]],change];
+
+    }
+
+    function reverse_reflection (m,dots,change) {
+        if(!Array.isArray(dots)) return;
+        if(!Array.isArray(change)) return;
+
+        let newDots = []
+
+        for (let dot of dots) {
+            [x,y] = dot;
+            if(change[1]) {y *=-10}
+
+            if(change[0]) {x *=-10}
+
+            if(change[2]) {let temp = x; x = y; y = temp;}
+
+            newDots.push([x,y]);
+            mat.putPixel(x,y,"black")
+        }
+
+
+        return newDots;
+    }
+
+    function bresenham(dots) {
+        if(!Array.isArray(dots)) return;
+
+        let m = 0, e = 0;
+        [[x1,y1],[x2,y2]] = dots;
+        let change = [];
+
+        m = (y2-y1)/(x2-x1);
+
+        //TODO: Avisar que a reflexão não pode ser o primeiro passo, visto que ela depende do m.
+        [dots,change] = reflection(m,dots);
+
+        [[x1,y1],[x2,y2]] = dots;
+
+        let x = x1, y = y1;
+        m = (y2-y1)/(x2-x1);
+
+        e = m - 0,5;
+
+        let tempdots = [[x,y]]
+
+        while(x < x2) {
+            if (e > 0) {y += 10; e -= 10;}
+            x += 10; e += m;
+
+            tempdots.push([x, y]);
+        }
+
+        return reverse_reflection(m,tempdots,change)
+    }
+
+
+    let points = bresenham([[100,0],[150,500]]);
+
+    console.log( points);
+
+
+
+    function recursivefilll(x,y,color,edgeColor){
+        let current = mat.getPixel(x,y);
+
+        if(current!= edgeColor && current != color){
+        mat.putPixel(x,y,color);
+        recursivefilll(x+pixel_lenght,y, color, edgeColor);
+        recursivefilll(x,y+pixel_lenght, color, edgeColor);
+        recursivefilll(x-pixel_lenght,y, color, edgeColor);
+        recursivefilll(x,y-pixel_lenght, color, edgeColor);
+
+        }
+
+    }
+
+    // //scanline
+    // let points = [
+    //     {x: 100, y: 50},
+    //     {x: 120, y: 100 },
+    //     {x: 160, y: 50 },
+    //     {x: 200, y: 100 },
+    //     {x: 300, y: 50},
+    //     {x: 350, y: 350},
+    //     {x: 300, y: 250},
+    //     {x: 50, y: 150},
+    //     {x: 100, y: 50}
+    //
+    // ];
+    //
+    // //generate line
+    // var lines = [];
+    // for (var i = 1; i < points.length; i++) {
+    //     lines.push(new Line(points[i - 1], points[i]));
+    //     console.log(points[i-1]);
+    //     console.log(points[i]);
+    //
+    // }
+    //
+    //
+    // // find min and max
+    // var minY = points[0].y;
+    // var maxY = points[0].y;
+    // for (var i = 0; i < points.length; i++) {
+    //     var temp = points[i].y;
+    //     if (temp < minY)
+    //         minY = temp;
+    //     else if (temp > maxY)
+    //         maxY = temp;
+    // }
+    // // end find
+    //
+    //
+    // for (var y = minY; y < maxY; y++) {
+    //     var meetPoint = getMeetPoint(y);
+    //     for (var i = 1; i < meetPoint.length; i += 2) {
+    //         bresenham(meetPoint[i - 1], y ,meetPoint[i], y);
+    //     }
+    // }
+    //
+    // function getMeetPoint(y) {
+    //     var meet = [];
+    //     for (var i = 0; i < lines.length; i++) {
+    //         var l = lines[i];
+    //         if (l.isValidY(y)) {
+    //             meet.push(l.getX(y));
+    //         }
+    //     }
+    //
+    //     //sort
+    //     for (var i = 0; i < meet.length; i++)
+    //         for (var j = i; j < meet.length; j++) {
+    //             if (meet[i]>meet[j]) {
+    //                 var temp =meet[i];
+    //                 meet[i]=meet[j];
+    //                 meet[j]=temp;
+    //             }
+    //         }
+    //
+    //     return  meet;
+    //
+    // }
+    //
+    // function Line(start, end) {
+    //     this.x0 = start.x;
+    //     this.x1 = end.x;
+    //     this.y0 = start.y;
+    //     this.y1 = end.y;
+    //     this.m = (this.y1 - this.y0) / (this.x1 - this.x0);
+    //
+    //     this.getX = function (y) {
+    //         if (!this.isValidY(y))
+    //             throw new RangeError();
+    //
+    //         return 1 / this.m * (y - this.y0) + this.x0;
+    //     }
+    //
+    //     this.isValidY = function (y) {
+    //         if (y >= this.y0 && y < this.y1) {
+    //             return true;
+    //         }
+    //         if (y >= this.y1 && y < this.y0) {
+    //             return true;
+    //         }
+    //
+    //         return false;
+    //     }
+    // }
+
+
+    // MidpointCircle(20,40,20);
+    // MidpointCircle(20,140,120);
+    // MidpointCircle(90,100,100);
+
+    let draw = mat.matriz;
+    for (let i = 0; i <500 ; i+=pixel_lenght) {
+        for (let j = 0; j < 500; j+=pixel_lenght) {
+            putpixel(i,j,mat.getPixel(i,j));
+        }
+    }
+
+
+
+</script>
+
+</body>
+</html>
