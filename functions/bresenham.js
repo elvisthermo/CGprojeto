@@ -1,3 +1,5 @@
+// [[10,20],[30,40]]
+
 function reflection(m,dots) {
     if(!Array.isArray(dots)) return;
 
@@ -85,8 +87,7 @@ function bresenham(dots) {
     return reverse_reflection(m,tempdots,change)
 }
 
-// let points = bresenham([[10,20],[50,70]]);
-// console.log( points);
+
 
 // exports = {bresenham};
 
