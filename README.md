@@ -12,9 +12,9 @@
 
 ### :x: Algoritmo de casteljau
 
-### :x: Flood Fill
+###  :heavy_check_mark: Flood Fill
 
-### :x: ScanLine
+###  :heavy_check_mark: ScanLine
 
 ### :x: Recorte de Linhas cohen-sutherland
 
