@@ -1,4 +1,5 @@
 // [[10,20],[30,40]]
+let colorChose;
 
 function reflection(m,dots) {
     if(!Array.isArray(dots)) return;
@@ -52,13 +53,14 @@ function reverse_reflection (m,dots,change) {
         newDots.push([x,y]);
     }
 
+    buffer.setPoints(newDots,colorChose);
 
     return newDots;
 }
 
-function bresenham(dots) {
+function bresenham(dots,color) {
     if(!Array.isArray(dots)) return;
-
+    colorChose = color;
     let m = 0, e = 0;
     [[x1,y1],[x2,y2]] = dots;
     let change = [];
@@ -83,6 +85,7 @@ function bresenham(dots) {
 
         tempdots.push([x, y]);
     }
+
 
     return reverse_reflection(m,tempdots,change)
 }

@@ -8,7 +8,6 @@ function bezier(pts) {
     }
 }
 
-/* example usage:
+
 var b = bezier([[0, 0, 0], [1, 1, 1], [2, -3, 6]]);
 for (var t = 0; t <= 10; t++) console.log(b(t/10));
-*/

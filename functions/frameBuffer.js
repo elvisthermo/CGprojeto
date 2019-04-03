@@ -34,8 +34,6 @@ class  frammeBuffer {
 
     setPoints(points,color){
         for (let i = 0; i < points.length ; i++) {
-            console.log("x:",points[i][0])
-            console.log("y:",points[i][1])
             buffer.putPixel(points[i][0],points[i][1],color);
         }
 
@@ -49,8 +47,8 @@ class  frammeBuffer {
                 .attr("width",10)
                 .attr("height",10)
                 .attr("fill",color)
-                .attr("stroke","black")
-                .attr("stroke-width","0.5px");
+                .attr("stroke","blue")
+                .attr("stroke-width","0.4px");
 
             return pixel;
         }
