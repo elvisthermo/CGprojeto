@@ -10,7 +10,7 @@
 
 ### :x: Algoritmo de elipse
 
-### :x: Algoritmo de casteljau
+### :heavy_check_mark: Algoritmo de casteljau
 
 ###  :heavy_check_mark: Flood Fill
 
