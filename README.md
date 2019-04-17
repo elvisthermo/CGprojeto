@@ -20,5 +20,20 @@
 
 ### :x: Recorte de Polignos
 
+### :x: Recorte de Polignos
+
+### :x:  Translação
+
+### :x: Rotação
+
+### :x: Escala
+
+### :x:  Translação D3
+
+### :x: Rotação D3
+
+### :x: Escala D3
+
+### :x: Projeção
 
 
