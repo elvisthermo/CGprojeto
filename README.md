@@ -26,6 +26,8 @@
 
 ### :x: Escala
 
+### :x: Projeção
+
 ### Opcional 
 
 ### :x: Algoritmo de elipse
@@ -36,6 +38,6 @@
 
 ### :x: Escala D3
 
-### :x: Projeção
+
 
 
