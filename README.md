@@ -8,8 +8,6 @@
 
 ### :heavy_check_mark: Algoritmo de circulo
 
-### :x: Algoritmo de elipse
-
 ### :heavy_check_mark: Algoritmo de casteljau
 
 ###  :heavy_check_mark: Flood Fill
@@ -27,6 +25,10 @@
 ### :x: Rotação
 
 ### :x: Escala
+
+### Opcional 
+
+### :x: Algoritmo de elipse
 
 ### :x:  Translação D3
 
