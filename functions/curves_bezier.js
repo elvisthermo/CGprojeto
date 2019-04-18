@@ -9,5 +9,7 @@ function bezier(pts) {
 }
 
 
-var b = bezier([[0, 0, 0], [1, 1, 1], [2, -3, 6]]);
-for (var t = 0; t <= 10; t++) console.log(b(t/10));
+var b = bezier([[10, 30 ],[25, 10],[40, 30]]);
+for (var t = 0; t <= 100; t++)
+    buffer.putPixel(Math.round(b(t/100)[0]),Math.round(b(t/100)[1]));
+
