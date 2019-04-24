@@ -1,26 +1,22 @@
 class  frammeBuffer {
     constructor(width, height) {
         this.matriz = [];
-        this.width = width;
-        this.height = height;
-
+        this.FrameSize = Array(width,height);
+        this.pixel = 10;
         this.createMat();
 
     }
     createMat() {
-        this.matriz;
-        let x = 0;
-
-        while(x<this.width){
-            let lista = [];
-            for(let y = 0;y<this.height;y++){
-                lista.push("white");
+        for(let i=0;i<this.FrameSize[0];i++){
+            this.matriz.push([]);
+            for(let j=0;j<this.FrameSize[1];j++){
+                this.matriz[i].push("white");
             }
-            this.matriz.push(lista);
-            x++;
         }
         return this.matriz;
-    }
+
+    };
+
 
     //retorna a cor
     getPixel(x,y){
@@ -29,38 +25,45 @@ class  frammeBuffer {
 
     //seta a cor
     putPixel(x,y,color){
+        console.log(color);
         this.matriz[x][y] = color;
+
+        return this.matriz[x][y];
     }
 
+    //seta conjunto de pontos
     setPoints(points,color){
+        if(!color)
+            color = "black";
         for (let i = 0; i < points.length ; i++) {
             buffer.putPixel(points[i][0],points[i][1],color);
         }
 
     }
 
-    draw(svg){
-        function draw_pixel(x,y,color){
+    //redesenhar
+    redraw(svg){
+        svg.selectAll("rect").remove();
+        const draw_pixel =(x,y,color)=>{
             let pixel = svg.append("rect")
                 .attr("x",x)
                 .attr("y",y)
-                .attr("width",10)
-                .attr("height",10)
-                .attr("fill",color)
-                .attr("stroke","blue")
-                .attr("stroke-width","0.4px");
+                .attr("width",this.pixel)
+                .attr("height",this.pixel)
+                .attr("class","data")
+                .style("fill",color)
+                .style("stroke","blue")
+                .style("stroke-width","0.4px");
 
             return pixel;
         }
 
-        for (let i = 0; i <50 ; i++) {
-            for (let j = 0; j < 50; j++) {
-                draw_pixel(i*10,j*10,this.getPixel(i,j));
+        for (let i = 0; i <this.FrameSize[0] ; i++) {
+            for (let j = 0; j < this.FrameSize[1]; j++) {
+                draw_pixel(i*this.pixel,j*this.pixel,this.getPixel(i,j));
             }
         }
 
     }
 
 }
-
-// exports = {frammeBuffer};

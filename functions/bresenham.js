@@ -90,7 +90,3 @@ function bresenham(dots,color) {
     return reverse_reflection(m,tempdots,change)
 }
 
-
-
-// exports = {bresenham};
-
