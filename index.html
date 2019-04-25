@@ -11,6 +11,7 @@
     <script src="functions/MidpointCircle.js"></script>
     <script src="functions/floodfill.js"></script>
     <script src="functions/scanline.js"></script>
+    <script src="functions/poligons.js"></script>
 </head>
 <body>
 <style>
@@ -22,7 +23,7 @@
     }
 
 </style>
-    <svg width="500px" height="500px"></svg>
+    <svg width="800px" height="500px"></svg>
 <script>
 
         let svg = d3.select("svg");
@@ -30,13 +31,13 @@
         let color = "black";
 
 
-       let buffer = new frammeBuffer(80,80);
+       let buffer = new frammeBuffer(80,50);
         bresenham([[0,0],[50,0]]);
         bresenham([[0,50],[49,49]]);
         bresenham([[0,0],[0,49]]);
         bresenham([[49,0],[49,49]]);
-
-        recursivefilll(3,3,"green","black");
+        //
+        // recursivefilll(3,3,"green","black");
 
         bresenham([[5,25],[45,25]]);
         bresenham([[5,25],[25,5]]);
@@ -49,6 +50,16 @@
         // recursivefilll(10,9,"grey","black");
         MidpointCircle(5,10,10,"red");
         recursivefilll(10,9,"purple","red");
+
+
+        let dost = [[10,20],[30,40],[50,20],[30,0]];
+
+        poligon(dost);
+        recursivefilll(15,21,"pink","black");
+
+
+
+
 
         // let points = [
         //     {x: 10, y: 5},
