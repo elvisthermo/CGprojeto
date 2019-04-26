@@ -1,4 +1,4 @@
-class  frammeBuffer {
+class frammeBuffer {
     constructor(width, height) {
         this.matriz = [];
         this.FrameSize = Array(width,height);
@@ -36,7 +36,7 @@ class  frammeBuffer {
         if(!color)
             color = "black";
         for (let i = 0; i < points.length ; i++) {
-            buffer.putPixel(points[i][0],points[i][1],color);
+            buffer.putPixel(Math.round(points[i][0]),Math.round(points[i][1]),color);
         }
 
     }

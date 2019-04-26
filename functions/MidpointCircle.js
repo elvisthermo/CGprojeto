@@ -4,7 +4,6 @@ function CirclePoints(x, y,vx,vy,color){
     buffer.putPixel(vx + -x,vy +  y,color);
     buffer.putPixel(vx + -x,vy +  -y,color);
     buffer.putPixel(vx + y,vy +  x,color);
-    buffer.putPixel(vx + y,vy +  x,color);
     buffer.putPixel(vx + y,vy +  -x,color);
     buffer.putPixel(vx + -y,vy + x,color);
     buffer.putPixel(vx + -y,vy + -x,color);
