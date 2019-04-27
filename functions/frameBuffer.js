@@ -7,6 +7,7 @@ class frammeBuffer {
 
     }
     createMat() {
+        this.matriz = [];
         for(let i=0;i<this.FrameSize[0];i++){
             this.matriz.push([]);
             for(let j=0;j<this.FrameSize[1];j++){
@@ -25,6 +26,10 @@ class frammeBuffer {
 
     //seta a cor
     putPixel(x,y,color){
+        if((x<0 || y<0) || (x>this.FrameSize[0] ||  x>this.FrameSize[0])){
+            console.log("out");
+            return "out";
+        }
         console.log(color);
         this.matriz[x][y] = color;
 
@@ -41,6 +46,12 @@ class frammeBuffer {
 
     }
 
+    clear() {
+        this.createMat();
+
+    }
+
+
     //redesenhar
     redraw(svg){
         svg.selectAll("rect").remove();
@@ -53,7 +64,7 @@ class frammeBuffer {
                 .attr("class","data")
                 .style("fill",color)
                 .style("stroke","blue")
-                .style("stroke-width","0.4px");
+                .style("stroke-width","0.1px");
 
             return pixel;
         }

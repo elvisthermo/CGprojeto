@@ -1,5 +1,4 @@
 //points [[][][][][]]
-
 function poligon (points,color) {
     for (let i = 0; i < points.length; i++) {
         points[i][0] = Math.round(points[i][0]);
@@ -7,12 +6,9 @@ function poligon (points,color) {
 
     }
 
-
     let begin = points[0];
     if(!color)
         color = "black";
-
-
 
     for (let i = 0; i <points.length ; i++) {
         if(points[i+1]){

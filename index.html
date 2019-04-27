@@ -13,6 +13,9 @@
     <script src="functions/scanline.js"></script>
     <script src="functions/poligons.js"></script>
     <script src="functions/Polygon_Clipping.js"></script>
+    <script src="functions/Clipping_lines.js"></script>
+    <script src="functions/Transforms.js"></script>
+
 </head>
 <body>
 <style>
@@ -24,7 +27,7 @@
     }
 
 </style>
-    <svg width="800px" height="500px"></svg>
+    <svg width="800px" height="800"></svg>
 <script>
 
         let svg = d3.select("svg");
@@ -32,12 +35,80 @@
         let color = "black";
 
 
-       let buffer = new frammeBuffer(80,50);
-        bresenham([[0,0],[49,0]]);
-        bresenham([[0,50],[49,49]]);
-        bresenham([[0,0],[0,49]]);
-        bresenham([[49,0],[49,49]]);
+       let buffer = new frammeBuffer(80,80);
+
+
+
+        let cont =0;
+        let scl = 0;
+        var recursiva = function () {
+            console.log("Se passaram 1 segundo!");
+            setTimeout(recursiva,50);
+
+
+
+            let rect  = [[20, 10], [30, 10], [33, 39],[20,30]];
+
+            poligon(rect,"green");
+
+
+            let polig = [
+                [20,30,33,20],
+                [10,10,39,30],
+                [1,1,1,1]];
+
+            let npoligon =scale(polig,1,1);
+
+
+        npoligon = translate(npoligon,-26,-21);
+        npoligon = rotacao(npoligon,cont);
+        npoligon = translate(npoligon,26,21);
+
+
+
+        console.log(npoligon);
+        let arrTeste = [];
+        for (let j = 0; j <npoligon[0].length ; j++) {
+            arrTeste.push([npoligon[0][j],npoligon[1][j]]);
+
+        }
+
+
+        console.log("array teste:",arrTeste);
+
+        poligon(rect,"green");
+        poligon(arrTeste,"pink");
         //
+            //
+        cont+=20;
+        scl+=0.2;
+            if(scl >2){
+                scl = 0;
+            }
+        buffer.redraw(svg);
+        buffer.clear();
+        }
+        recursiva();
+
+
+
+        //
+        // clipRext(0,0,49,49);
+        // bresenham([[20, 20], [60, 20]],"red");
+        // cohenSutherlandClip(20, 20, 60, 20);
+
+        // let data = [
+        //     [40,10],
+        //     [20,50],
+        //     [1, 1]];
+        //
+        // console.log("translate:",translate(data,10,50));
+        //
+        // console.log("rotate:",rotacao(data,10));
+        //
+        // console.log("scale:",scale(data,10,20));
+
+
         // recursivefilll(3,3,"green","black");
 
         // bresenham([[5,25],[45,25]]);
@@ -63,28 +134,28 @@
 
 
         //poligono
-        let subjectPolygon = [
-                [5, 15],
-                [20, 5],
-                [25, 32],
-                [20, 25],
-                [15, 35]
-                // [100, 200]
-            ],
-
-        //poligno de recorte
-        clipPolygon = [[10, 10], [40, 10], [40, 30], [10, 30]];
-
-
-        let clippedPolygon = clip(subjectPolygon, clipPolygon);
-        console.log(clippedPolygon);
-        recursivefilll(3,3,"purple","black");
-
-        // poligon(subjectPolygon,"blue");
-        poligon(clipPolygon,"green");
-
-        poligon(clippedPolygon,"red");
-        recursivefilll(17,17,"pink","red");
+        // let subjectPolygon = [
+        //         [5, 15],
+        //         [20, 5],
+        //         [25, 32],
+        //         [20, 25],
+        //         [15, 35]
+        //         // [100, 200]
+        //     ],
+        //
+        // //poligno de recorte
+        // clipPolygon = [[10, 10], [40, 10], [40, 30], [10, 30]];
+        //
+        //
+        // let clippedPolygon = clip(subjectPolygon, clipPolygon);
+        // console.log(clippedPolygon);
+        // recursivefilll(3,3,"purple","black");
+        //
+        // // poligon(subjectPolygon,"blue");
+        // poligon(clipPolygon,"green");
+        //
+        // poligon(clippedPolygon,"red");
+        // recursivefilll(17,17,"pink","red");
 
         // bresenham([[35,35],[30,25]]);
         // bresenham([[30,25],[5,15]]);
