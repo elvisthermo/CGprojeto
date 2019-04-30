@@ -27,8 +27,8 @@ class frammeBuffer {
     //seta a cor
     putPixel(x,y,color){
         if((x<0 || y<0) || (x>this.FrameSize[0] ||  x>this.FrameSize[0])){
-            console.log("out");
-            return "out";
+            console.log("buffer cheio");
+            return "buffer cheio";
         }
         console.log(color);
         this.matriz[x][y] = color;
