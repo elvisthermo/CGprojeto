@@ -1,42 +1,39 @@
-# Projeto da Disciplina de Computação Grafica UFPA
+## Projeto de de CGrafica ( ?_?) 
+ 
+### Algoritimos Implementados
 
-## Algoritimos Implementados
+#### -  Framme Buffer :heavy_check_mark:
 
-### :heavy_check_mark: Framme Buffer
+###   Rasterização
 
-### :heavy_check_mark: Algoritmo de Bresenham
+#### -  Algoritmo de Bresenham :heavy_check_mark:
+#### -  Algoritmo de circulo   :heavy_check_mark:
+#### -  Algoritmo de casteljau :heavy_check_mark:
 
-### :heavy_check_mark: Algoritmo de circulo
+###   Preenchimento
 
-### :heavy_check_mark: Algoritmo de casteljau
+#### - Flood Fill :heavy_check_mark:
+#### - ScanLine   :heavy_check_mark: 
 
-###  :heavy_check_mark: Flood Fill
+###   Recorte de Polignos
+ 
+#### - Recorte de Linhas cohen-sutherland :heavy_check_mark:
+#### - Recorte de Polignos :heavy_check_mark:
 
-###  :heavy_check_mark: ScanLine
 
-### :x: Recorte de Linhas cohen-sutherland
+###  Transformações Geometricas
 
-### :x: Recorte de Polignos
+#### -   Translação    :heavy_check_mark: 
+#### -   Rotação       :heavy_check_mark:
+#### -   Escala        :heavy_check_mark:
 
-### :x: Recorte de Polignos
+#### -   Projeções      :heavy_check_mark:
 
-### :x:  Translação
+###  Opcional 
 
-### :x: Rotação
-
-### :x: Escala
-
-### :x: Projeção
-
-### Opcional 
-
-### :x: Algoritmo de elipse
-
-### :x:  Translação D3
-
-### :x: Rotação D3
-
-### :x: Escala D3
+#### -  Translação 3D  :heavy_check_mark: 
+#### -   Rotação 3D    :heavy_check_mark:
+#### -   Escala 3D     :heavy_check_mark:
 
 
 
