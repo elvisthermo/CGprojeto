@@ -14,8 +14,9 @@
     <script src="functions/poligons.js"></script>
     <script src="functions/Polygon_Clipping.js"></script>
     <script src="functions/mat_multipy.js"></script>
-    <script src="functions/Clipping_lines.js"></script>
+<!--    <script src="functions/Clipping_lines.js"></script>-->
     <script src="functions/Transforms.js"></script>
+    <script src="functions/curves_bezier.js"></script>
 
 </head>
 <body>
@@ -27,8 +28,54 @@
         background-color: white;
     }
 
+    .main-menu{
+        background-color:floralwhite;
+        max-width: 200px;
+        display: inline-grid;
+        float: right;
+    }
+
 </style>
-    <svg width="800px" height="800"></svg>
+    <svg width="800px" height="800" id="painel"  onclick="Coords(event)"></svg>
+
+
+
+    <div class="main-menu">
+        Bresenham:
+        <button type="button" value="bresenham" id="bresenham"  onclick="lines()">
+            bresenham
+        </button>
+
+        Poligonos:
+        <button type="button" value="Poligonos" id="Poligonos"  onclick="Poligonos()">
+            Poligonos
+        </button>
+
+        circle <input type="button" value="circle" onclick="circle()">
+
+        bezier <input type="button" value="bezier"  onclick="curves()">
+
+        FloodFill <input type="button" value="FloodFill" onclick="fill()">
+
+        Scanline <input type="button" value="Scanline">
+
+        Recorte De Linhas <input type="button" value="Recorte De Linhas">
+
+        Recorte De Poligonos <input type="button" value="Recorte De Poligonos">
+
+        Translação <input type="button" value="Translação">
+
+        Rotatação <input type="button" value="Rotatação">
+
+        Escala <input type="button" value="Escala">
+
+        Projeção Pescectiva <input type="button" value="Projeção Pescectiva">
+
+        Projeção Ortografica <input type="button" value="Projeção Ortografica">
+
+
+    </div>
+
 <script>
 
         let svg = d3.select("svg");
@@ -36,60 +83,136 @@
         let color = "black";
 
 
+       let pts1 =[];
+       let ptsFill;
+       let ptscircle = [];
+
+
        let buffer = new frammeBuffer(80,80);
 
-
-
-        let cont =0;
-        let scl = 0;
-        var recursiva = function () {
-            console.log("Se passaram 1 segundo!");
-            setTimeout(recursiva,50);
-
-
-
-            let rect  = [[20, 10], [30, 10], [33, 39],[20,30]];
-
-            poligon(rect,"green");
-
-
-            let polig = [
-                [20,30,33,20],
-                [10,10,39,30],
-                [1,1,1,1]];
-
-            let npoligon =scale(polig,1,1);
-
-
-        npoligon = translate(npoligon,-26,-21);
-        npoligon = rotacao(npoligon,cont);
-        npoligon = translate(npoligon,26,21);
-
-
-
-        console.log(npoligon);
-        let arrTeste = [];
-        for (let j = 0; j <npoligon[0].length ; j++) {
-            arrTeste.push([npoligon[0][j],npoligon[1][j]]);
-
-        }
-
-
-        console.log("array teste:",arrTeste);
-
-        poligon(rect,"green");
-        poligon(arrTeste,"pink");
-        //
-            //
-        cont+=20;
-        scl+=0.2;
-            if(scl >2){
-                scl = 0;
-            }
         buffer.redraw(svg);
-        buffer.clear();
+
+        function Coords(event) {
+            let x = Math.round(event.clientX/10);
+            let y = Math.round(event.clientY/10);
+            ptsFill = [x,y];
+            pts1.push([x,y]);
+            ptscircle.push([x,y]);
+            buffer.putPixel(x,y,"black");
+            buffer.redraw(svg);
+
+            console.log(pts1);
+
         }
-        recursiva();
+
+
+       buffer.redraw(svg);
+
+
+       // console.log(x1," ",x2);
+
+       function lines() {
+
+           buffer.setPoints(pts1,"white");
+
+           bresenham(pts1,"red");
+           buffer.redraw(svg);
+           pts1 =[];
+           console.log("agora vai");
+
+       };
+
+        function Poligonos(){
+            poligon(pts1,"blue");
+            buffer.redraw(svg);
+            pts1 =[];
+
+        }
+
+        function fill(){
+            recursivefilll(ptsFill[0],ptsFill[1],"purple","blue");
+            buffer.redraw(svg);
+
+        }
+
+        function circle(){
+            let radius;
+            if(!ptscircle[1]){
+                radius = 5;
+            }
+            else {
+                radius= Math.abs(ptscircle[0][0]-ptscircle[1][0]);
+            }
+
+            buffer.setPoints(ptscircle,"white");
+            MidpointCircle(radius, ptscircle[0][0],ptscircle[0][1],"blue");
+            buffer.redraw(svg);
+
+            ptscircle = [];
+
+
+        }
+
+        function curves(){
+            bezier(pts1);
+            buffer.redraw(svg);
+
+            pts1 = [];
+        }
+
+
+
+
+       //  let cont =0;
+       //  let scl = 0;
+       //  var recursiva = function () {
+       //      console.log("Se passaram 1 segundo!");
+       //      setTimeout(recursiva,50);
+       //
+       //
+       //
+       //      let rect  = [[20, 10], [30, 10], [33, 39],[20,30]];
+       //
+       //      poligon(rect,"green");
+       //
+       //
+       //      let polig = [
+       //          [20,30,33,20],
+       //          [10,10,39,30],
+       //          [1,1,1,1]];
+       //
+       //      let npoligon =scale(polig,1,1);
+       //
+       //
+       //  npoligon = translate(npoligon,-26,-21);
+       //  npoligon = rotacao(npoligon,cont);
+       //  npoligon = translate(npoligon,26,21);
+       //
+       //
+       //
+       //  console.log(npoligon);
+       //  let arrTeste = [];
+       //  for (let j = 0; j <npoligon[0].length ; j++) {
+       //      arrTeste.push([npoligon[0][j],npoligon[1][j]]);
+       //
+       //  }
+       //
+       //
+       //  console.log("array teste:",arrTeste);
+       //
+       //  poligon(rect,"green");
+       //  poligon(arrTeste,"pink");
+       //  //
+       //      //
+       //  cont+=20;
+       //  scl+=0.2;
+       //      if(scl >2){
+       //          scl = 0;
+       //      }
+       //  buffer.redraw(svg);
+       //  buffer.clear();
+       //  }
+       //  recursiva();
 
 
 
@@ -163,7 +286,7 @@
         // bresenham([[5,15],[10,5]]);
         // recursivefilll(24,13,"purple","black");
 
-        buffer.redraw(svg);
+        // buffer.redraw(svg);
 
 </script>
 
