@@ -74,28 +74,42 @@
 
 	<div class="btn-magico">
 		<button width="100%" class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Translação com Valor" onclick="on_translate_wvalue(document.getElementById('tvalue').value)">Translação com valor</button> 
-		<input  id="input-numero" type="text" class="form-control" id="tvalue"/>
+		<input  type="text" class="form-control input-numero" id="tvalue"/>
 	</div>
  
 	<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação" onclick="on_rotate()">Rotatação</button>
 	
 	<div class="btn-magico">
 		<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação com Angulo" onclick="on_rotate_wangle(document.getElementById('angle').value)">Rotação com ângulo</button> 
-		<input id="input-numero" type="text" class="form-control" id="angle"/>
+		<input type="text" class="form-control input-numero" id="angle"/>
 	</div>
 
 	<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Escala" onclick="on_scale()">Escala</button>
 	
 	<div class="btn-magico">
-		<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Escala com Valores" onclick="on_scale_wvalue(document.getElementById('evalue').value)">Escala com Valores</button> 
-		<input id="input-numero" type="text" class="form-control" id="evalue"/>
+		<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Escala com Valores" onclick="on_scale_wvalue(document.getElementById('evalue').value)">Escala com Valores</button>
+		<input type="text" class="form-control input-numero" id="evalue"/>
     </div>
 	
 	<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Projeção Pescectiva" onclick="on_pespective()">Projeção Pescectiva</button>
     
 	<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Projeção Ortografica" onclick="on_ortogafic()">Projeção Ortografica</button>
-    
-	<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Limpar Tela" onclick="document.location.reload(true);">Limpar Tela</button>
+
+    <div class="btn-magico">
+        <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Projeção Cavalier " onclick="on_ortogafic_especial(1, document.getElementById('cavalier').value)">Projeção Cavalier</button>
+        <input type="text" class="form-control input-numero" id="cavalier"/>
+    </div>
+
+    <div class="btn-magico">
+        <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Projeção Cabinet" onclick="on_ortogafic_especial(1/2, document.getElementById('cabinet').value)">Projeção Cabinet</button>
+        <input type="text" class="form-control input-numero" id="cabinet"/>
+    </div>
+
+    Z: Necessita da mesma quantidade de pontos
+    <input type="text" class="form-control" id="z"/>
+
+
+    <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Limpar Tela" onclick="document.location.reload(true);">Limpar Tela</button>
 
 
 </div>
@@ -247,14 +261,20 @@
         return arrTeste;
     }
 
-    function mat3d(martiz){
+    function mat3d(martiz, z){
+
+
         let mat =[];
         let list = [[],[],[],[]];
         for (let i = 0; i <martiz.length ; i++) {
             list[0].push(martiz[i][0]);
             list[1].push(martiz[i][1]);
             list[2].push(i);
-            list[3].push(1);
+            if (!z){
+                list[3].push(i);
+            }else{
+                list[3].push(z[i]);
+            }
 
         }
         return list;
@@ -411,12 +431,24 @@
 
     }
 
-    function on_ortogafic(){
+    function on_ortogafic(tvalue){
+        let ang, value;
+
+        [ang, value] = tvalue.split(',');
+
+        ang = Number(ang);
+        value = Number(value);
+
+        if(!ang)
+            ang = 30;
+        if(!value)
+            value=1/2;
+
         poligon(pts1,"red");
-        let move = mat3d(pts1);
+        let move = mat3d(pts1, );
         let moved = translate3D(move,-pts1[0][0],-pts1[0][1],1);
 
-        moved = Oblique_Projection(moved,30,1/2);
+        moved = Oblique_Projection(moved,ang,value);
 
         moved = translate3D(moved,pts1[0][0],pts1[0][1],1);
         poligon(inverseMat(moved),colorBorder)
@@ -424,6 +456,26 @@
         buffer.redraw(svg);
 
     }
+
+    function on_ortogafic_especial(value, ang){
+
+        ang = Number(ang);
+        value = Number(value);
+
+        poligon(pts1,"red");
+        let move = mat3d(pts1, );
+        let moved = translate3D(move,-pts1[0][0],-pts1[0][1],1);
+
+        moved = Oblique_Projection(moved,ang,value);
+
+        moved = translate3D(moved,pts1[0][0],pts1[0][1],1);
+        poligon(inverseMat(moved),colorBorder)
+
+        buffer.redraw(svg);
+
+    }
+
+
 
     function on_clear(){
 		buffer.clear();
