@@ -1,0 +1,44 @@
+body{
+    background-color: darkgrey;
+}
+svg{
+    background-color: white;
+}
+
+
+
+.main-menu{
+    background-color: #292b29;
+    position: relative;
+    width: 500px;
+    min-width: 200px;
+    overflow-y: auto;
+    max-height: 650px;
+    display: inline-grid;
+    float: right;
+    font-style: normal;
+    color: azure;
+}
+button{
+    margin: 2px;
+}
+input{
+    max-width: 80px;
+    height: 50px;
+    display: inline;
+}
+.menu-color{
+    padding: 10px;
+    /*font-family: "Berlin Sans FB";*/
+    display: flex;
+}
+h2{
+    font-family: Consolas;
+    font-weight: bold;
+    padding: 10px 20px 10px 20px;
+    color: #0e0e0e;
+}
+.page-header{
+    background-color: #e2e6ea;
+}
+

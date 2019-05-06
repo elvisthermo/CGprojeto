@@ -8,7 +8,7 @@ function perspective(P){
 
     let out = multiply(ident,P);
 
-    console.log("teste:",out);
+
 
     for(let i=0;i<out[3].length; i++){
         out[0][i] = out[0][i]/out[3][i];
@@ -17,6 +17,6 @@ function perspective(P){
         out[3][i] = out[3][i]/out[3][i];
     }
 
-    console.log("testes 2:",out);
+
     return out;
 }

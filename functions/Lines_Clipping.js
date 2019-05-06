@@ -48,7 +48,7 @@ function computeCode(x, y) {
     return code;
 }
 //algoritimo de  cohen Sutherland
-function cohenSutherlandClip(x1, y1, x2, y2){
+function cohenSutherlandClip(x1, y1, x2, y2,color){
     //calcular regiões P1, P2
 
     let dots = [];
@@ -103,7 +103,7 @@ function cohenSutherlandClip(x1, y1, x2, y2){
     if (accept){
         // console.log("aceita:", x1 ,y1, x2, y2);
 
-        bresenham([[Math.round(x1) ,Math.round(y1)],[Math.round(x2),Math.round(y2)]]);
+        bresenham([[Math.round(x1) ,Math.round(y1)],[Math.round(x2),Math.round(y2)]],color);
 
         return dots
 

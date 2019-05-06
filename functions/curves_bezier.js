@@ -9,7 +9,7 @@ function bezierPoint(p,t,n) {
     return [pts[0][0],pts[0][1]];
 }
 
-function bezier(controlPt) {
+function bezier(controlPt,color) {
     let pts = controlPt, n = pts.length-1;//4
     // console.log(pts);
     let points = [];
@@ -18,7 +18,7 @@ function bezier(controlPt) {
     // bresenham(points);
 
     for (let i = 0; i <points.length-1 ; i++) {
-        bresenham([points[i],points[i+1]],"black");
+        bresenham([points[i],points[i+1]],color);
     }
     return points;
 }

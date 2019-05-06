@@ -7,8 +7,8 @@ function poligon (points,color) {
     }
 
     let begin = points[0];
-    if(!color)
-        color = "black";
+    // if(!color)
+    //     color = "black";
 
     for (let i = 0; i <points.length ; i++) {
         if(points[i+1]){
