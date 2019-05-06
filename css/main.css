@@ -29,16 +29,19 @@ input{
 }
 .menu-color{
     padding: 10px;
-    /*font-family: "Berlin Sans FB";*/
+    font-family: "Berlin Sans FB";
     display: flex;
 }
 h2{
     font-family: Consolas;
     font-weight: bold;
-    padding: 10px 20px 10px 20px;
+    /*padding: 10px 20px 10px 0px;*/
     color: #0e0e0e;
 }
 .page-header{
     background-color: #e2e6ea;
 }
 
+label{
+    padding: 10px;
+}

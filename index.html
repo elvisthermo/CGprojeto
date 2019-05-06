@@ -40,14 +40,24 @@
     <div class="menu-color">
         <table>
             <td width="50%">
-                <label>Cor das linhas:</label>
+                <tr>
+
+                    <label> Cor linhas: </label>
+                </tr>
+
+
                 <input id="colorBorder"  class="form-control"  type="color" value="#000000"/>
+
             </td>
 
             <td width="50%">
+                <tr>
+                    <label> Cor Preenchimento: </label>
 
-                <label>Cor do Preenchimento:</label>
-                <input id="colorFill"  class="form-control"  type="color" value="#1aacf2"/>
+
+
+                    <input id="colorFill"  class="form-control"  type="color" value="#1aacf2"/>
+                </tr>
             </td>
         </table>
     </div>
@@ -234,57 +244,76 @@
 
 
     function on_translate(){
-        poligon(pts1,"red");
-        let move =mat(pts1);
-        let moved = translate(move,-pts1[0][0],-pts1[0][1]);
+        let tx = 0;
+        let recursiva = function () {
+            on_clear();
+            setTimeout(recursiva, 1000);
+            poligon(pts1, "red");
+            let move = mat(pts1);
+            let moved = translate(move, -pts1[0][0], -pts1[0][1]);
 
-        moved = translate(moved,10,20);
+            moved = translate(moved, tx, tx);
 
-        poligon(inverseMat(moved),colorBorder)
+            poligon(inverseMat(moved), colorBorder)
 
-        buffer.redraw(svg);
+            buffer.redraw(svg);
+            tx+=10;
 
+            if(tx>60){
+                tx=0;
+
+            }
+        }
+        recursiva();
     }
 
     function on_rotate(){
-        poligon(pts1,"red");
-        let move =mat(pts1);
-        let moved = translate(move,-pts1[0][0],-pts1[0][1]);
+        let ang = 1;
+        let recursiva = function () {
+            on_clear();
+            console.log("Se passaram 1 segundo!");
+            setTimeout(recursiva, 1000);
 
-        moved = rotacao(moved,70);
+            poligon(pts1, "red");
+            let move = mat(pts1);
+            let moved = translate(move, -pts1[0][0], -pts1[0][1]);
 
-        moved = translate(moved,pts1[0][0],pts1[0][1]);
-        poligon(inverseMat(moved),colorBorder)
+            moved = rotacao(moved, ang);
 
-        buffer.redraw(svg);
+            moved = translate(moved, pts1[0][0], pts1[0][1]);
+            poligon(inverseMat(moved), colorBorder)
 
+            buffer.redraw(svg);
+            ang+=30;
+        }
+        recursiva();
     }
 
-    function on_scale(){
-        poligon(pts1,"red");
-        let move =mat(pts1);
-        let moved = translate(move,-pts1[0][0],-pts1[0][1]);
+    function on_scale() {
+        let ts = -1;
+        let recursiva = function () {
+            on_clear();
 
-        moved = scale(moved,1.5,1.5);
+            console.log("Se passaram 1 segundo!");
+            setTimeout(recursiva, 500);
 
-        moved = translate(moved,pts1[0][0],pts1[0][1]);
-        poligon(inverseMat(moved),colorBorder)
 
-        buffer.redraw(svg);
+            poligon(pts1, "red");
+            let move = mat(pts1);
+            let moved = translate(move, -pts1[0][0], -pts1[0][1]);
 
-    }
+            moved = scale(moved, ts, ts);
 
-    function on_scale(){
-        poligon(pts1,"red");
-        let move =mat(pts1);
-        let moved = translate(move,-pts1[0][0],-pts1[0][1]);
+            moved = translate(moved, pts1[0][0], pts1[0][1]);
+            poligon(inverseMat(moved), colorBorder)
 
-        moved = scale(moved,1.5,1.5);
-
-        moved = translate(moved,pts1[0][0],pts1[0][1]);
-        poligon(inverseMat(moved),colorBorder)
-
-        buffer.redraw(svg);
+            buffer.redraw(svg);
+            ts+=0.2
+            if(ts>1.5){
+                ts=-1;
+            }
+        }
+        recursiva();
 
     }
 
