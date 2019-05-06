@@ -74,42 +74,49 @@
 
 	<div class="btn-magico">
 		<button width="100%" class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Translação com Valor" onclick="on_translate_wvalue(document.getElementById('tvalue').value)">Translação com valor</button> 
-		<input  type="text" class="form-control input-numero" id="tvalue"/>
+		<input  type="text" placeholder="tx, ty" class="form-control input-numero" id="tvalue"/>
 	</div>
  
 	<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação" onclick="on_rotate()">Rotatação</button>
 	
 	<div class="btn-magico">
 		<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação com Angulo" onclick="on_rotate_wangle(document.getElementById('angle').value)">Rotação com ângulo</button> 
-		<input type="text" class="form-control input-numero" id="angle"/>
+		<input type="text" placeholder="angulo" class="form-control input-numero" id="angle"/>
 	</div>
 
 	<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Escala" onclick="on_scale()">Escala</button>
 	
 	<div class="btn-magico">
 		<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Escala com Valores" onclick="on_scale_wvalue(document.getElementById('evalue').value)">Escala com Valores</button>
-		<input type="text" class="form-control input-numero" id="evalue"/>
+		<input type="text" placeholder="sx, sy" class="form-control input-numero" id="evalue"/>
     </div>
-	
-	<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Projeção Pescectiva" onclick="on_pespective()">Projeção Pescectiva</button>
-    
-	<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Projeção Ortografica" onclick="on_ortogafic()">Projeção Ortografica</button>
+
+    <div class="btn-magico">
+        <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Projeção Perspectiva" onclick="on_pespective(document.getElementById('perspective').value)">Projeção Perspectiva</button>
+        <input type="text" placeholder="ponto de fuga" class="form-control input-numero" id="perspective"/>
+    </div>
+
+
+    <div class="btn-magico">
+        <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Projeção Ortografica" onclick="on_ortogafic(document.getElementById('ortografica').value)">Projeção Ortografica</button>
+        <input type="text" placeholder="angulo, ponto" class="form-control input-numero" id="ortografica"/>
+    </div>
 
     <div class="btn-magico">
         <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Projeção Cavalier " onclick="on_ortogafic_especial(1, document.getElementById('cavalier').value)">Projeção Cavalier</button>
-        <input type="text" class="form-control input-numero" id="cavalier"/>
+        <input type="text" placeholder="angulo" class="form-control input-numero" id="cavalier"/>
     </div>
 
     <div class="btn-magico">
         <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Projeção Cabinet" onclick="on_ortogafic_especial(1/2, document.getElementById('cabinet').value)">Projeção Cabinet</button>
-        <input type="text" class="form-control input-numero" id="cabinet"/>
+        <input type="text" placeholder="angulo" class="form-control input-numero" id="cabinet"/>
     </div>
 
     Z: Necessita da mesma quantidade de pontos
     <input type="text" class="form-control" id="z"/>
 
 
-    <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Limpar Tela" onclick="document.location.reload(true);">Limpar Tela</button>
+    <button class="btn btn-danger" data-toggle="button" aria-pressed="false" value="Limpar Tela" onclick="document.location.reload(true);">Limpar Tela</button>
 
 
 </div>
@@ -417,12 +424,15 @@
 
 	
 
-    function on_pespective(){
+    function on_pespective(fuga){
+        fuga = Number(fuga);
+
+
         poligon(pts1,"red");
         let move =mat3d(pts1);
         let moved = translate3D(move,-pts1[0][0],-pts1[0][1],1);
 
-        moved = perspective(moved);
+        moved = perspective(moved, fuga);
 
         moved = translate3D(moved,pts1[0][0],pts1[0][1],1);
         poligon(inverseMat(moved),colorBorder)

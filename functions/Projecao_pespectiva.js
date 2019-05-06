@@ -1,5 +1,7 @@
-function perspective(P){
-    let d = 12;
+function perspective(P, d){
+
+    if(!d)
+        d = 12;
 
     let ident = [[d, 0, 0, 0],
                 [0, d, 0, 0],
