@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c17d6d00-b08c-4cb3-ae3d-dd1bf66f70c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/functions/Projecao_ortigrafica.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/functions/Projecao_paralela.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/functions/Transformacao_escala.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/functions/Transformacao_rotacao.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/functions/Transformacao_translacao.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/functions/mat_multipy.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/MidpointCircle.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/MidpointCircle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/Polygon_Clipping.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Polygon_Clipping.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/frameBuffer.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/frameBuffer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/poligons.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/poligons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/scanline.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/scanline.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -31,7 +21,7 @@
         <entry file="file://$PROJECT_DIR$/functions/Transforms.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -39,15 +29,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="261" column="19" selection-start-line="261" selection-start-column="19" selection-end-line="261" selection-end-column="19" />
-              <folding>
-                <element signature="e#2226#2521#0" />
-                <element signature="e#9783#9798#0" />
-                <element signature="e#10083#10114#0" />
-                <element signature="e#10191#10221#0" />
-                <element signature="e#10271#10310#0" />
-              </folding>
+            <state relative-caret-position="416">
+              <caret line="416" column="64" lean-forward="true" selection-start-line="416" selection-start-column="64" selection-end-line="416" selection-end-column="64" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/functions/Projecao_ortigrafica.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="575">
+              <caret line="38" selection-start-line="38" selection-end-line="38" />
             </state>
           </provider>
         </entry>
@@ -55,8 +47,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="478">
-              <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
+            <state relative-caret-position="765">
+              <caret line="45" column="1" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -119,10 +111,10 @@
         <option value="$PROJECT_DIR$/functions/floodfill.js" />
         <option value="$PROJECT_DIR$/functions/Lines_Clipping.js" />
         <option value="$PROJECT_DIR$/functions/Projecao_pespectiva.js" />
-        <option value="$PROJECT_DIR$/functions/Projecao_ortigrafica.js" />
         <option value="$PROJECT_DIR$/libs/bootstrap.js" />
         <option value="$PROJECT_DIR$/css/main.css" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/functions/Projecao_ortigrafica.js" />
       </list>
     </option>
   </component>
@@ -137,28 +129,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="CGprojeto" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CGprojeto" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CGprojeto" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CGprojeto" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CGprojeto" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CGprojeto" type="462c0819:PsiDirectoryNode" />
-              <item name="libs" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -251,17 +223,18 @@
       <workItem from="1556399663357" duration="6286000" />
       <workItem from="1556593270520" duration="1692000" />
       <workItem from="1557061232603" duration="42334000" />
+      <workItem from="1557167767393" duration="166000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="164338000" />
+    <option name="totallyTimeSpent" value="164504000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17336309" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17334037" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -428,48 +401,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/functions/Projecao_ortigrafica.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="39" column="35" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/bootstrap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/bootstrap.js" />
     <entry file="file://$PROJECT_DIR$/functions/Transforms.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
+        <state relative-caret-position="765">
+          <caret line="45" column="1" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functions/Projecao_ortigrafica.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="261" column="19" selection-start-line="261" selection-start-column="19" selection-end-line="261" selection-end-column="19" />
-          <folding>
-            <element signature="e#2226#2521#0" />
-            <element signature="e#9783#9798#0" />
-            <element signature="e#10083#10114#0" />
-            <element signature="e#10191#10221#0" />
-            <element signature="e#10271#10310#0" />
-          </folding>
+        <state relative-caret-position="416">
+          <caret line="416" column="64" lean-forward="true" selection-start-line="416" selection-start-column="64" selection-end-line="416" selection-end-column="64" />
         </state>
       </provider>
     </entry>

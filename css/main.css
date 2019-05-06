@@ -5,8 +5,19 @@ svg{
     background-color: white;
 }
 
+.button-magico{	
+	display: flex;
+	width: 75%;
+}
 
+#input-numero{
+	width: 25%;
+}
 
+.btn-magico{
+	display: flex;
+}
+	
 .main-menu{
     background-color: #292b29;
     position: relative;
@@ -21,8 +32,9 @@ svg{
 }
 button{
     margin: 2px;
+	width: -moz-available;
 }
-input{
+.inputcolor{
     max-width: 80px;
     height: 50px;
     display: inline;
@@ -35,7 +47,6 @@ input{
 h2{
     font-family: Consolas;
     font-weight: bold;
-    /*padding: 10px 20px 10px 0px;*/
     color: #0e0e0e;
 }
 .page-header{
