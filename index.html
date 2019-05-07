@@ -77,7 +77,7 @@
 		<input  type="text" placeholder="tx, ty" class="form-control input-numero" id="tvalue"/>
 	</div>
  
-	<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação" onclick="on_rotate()">Rotatação</button>
+	<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação" onclick="on_rotate()">Rotação</button>
 	
 	<div class="btn-magico">
 		<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação com Angulo" onclick="on_rotate_wangle(document.getElementById('angle').value)">Rotação com ângulo</button> 
@@ -94,17 +94,20 @@
     <div class="btn-magico">
         <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Projeção Perspectiva" onclick="on_pespective(document.getElementById('perspective').value)">Projeção Perspectiva</button>
         <input type="text" placeholder="ponto de fuga" class="form-control input-numero" id="perspective"/>
+        <input type="number" placeholder="digite o z:" class="form-control input-numero" />
     </div>
 
 
     <div class="btn-magico">
         <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Projeção Ortografica" onclick="on_ortogafic(document.getElementById('ortografica').value)">Projeção Ortografica</button>
         <input type="text" placeholder="angulo, ponto" class="form-control input-numero" id="ortografica"/>
+        <input type="number" placeholder="digite o z:" class="form-control input-numero" />
     </div>
 
     <div class="btn-magico">
         <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Projeção Cavalier " onclick="on_ortogafic_especial(1, document.getElementById('cavalier').value)">Projeção Cavalier</button>
         <input type="text" placeholder="angulo" class="form-control input-numero" id="cavalier"/>
+
     </div>
 
     <div class="btn-magico">
@@ -112,8 +115,12 @@
         <input type="text" placeholder="angulo" class="form-control input-numero" id="cabinet"/>
     </div>
 
-    Z: Necessita da mesma quantidade de pontos
-    <input type="text" class="form-control" id="z"/>
+
+    <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Translação 3D" onclick="on_rotate()">Translação 3D</button>
+    <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação X" onclick="on_rotate()">Rotação X</button>
+    <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação Y " onclick="on_rotate()">Rotação Y</button>
+    <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação Z" onclick="on_rotate()">Rotação Z</button>
+    <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Escala 3D" onclick="on_rotate()">Escala 3D</button>
 
 
     <button class="btn btn-danger" data-toggle="button" aria-pressed="false" value="Limpar Tela" onclick="document.location.reload(true);">Limpar Tela</button>
@@ -269,19 +276,17 @@
     }
 
     function mat3d(martiz, z){
-
-
         let mat =[];
         let list = [[],[],[],[]];
-        for (let i = 0; i <martiz.length ; i++) {
+        for (let i = 0; i <martiz.length ; i++){
             list[0].push(martiz[i][0]);
             list[1].push(martiz[i][1]);
-            list[2].push(i);
             if (!z){
-                list[3].push(i);
+                list[2].push(i);
             }else{
-                list[3].push(z[i]);
+                list[2].push(z[i]);
             }
+            list[3].push(1);
 
         }
         return list;
