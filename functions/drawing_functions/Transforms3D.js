@@ -4,7 +4,7 @@ function translate3D(mat,tx,ty,tz){
     const translate =
             [[1,0,0,tx],
             [0,1,0,ty],
-            [0,1,0,tz],
+            [0,0,1,tz],
             [0,0,0,1] ];
 
     return multiply(translate,mat);
@@ -41,10 +41,10 @@ function rotacaoY_3D(mat,a){
 
     const rotacao =
 
-        [[cos(a), 0,sin(a),0],
-        [0,      1,0,     0],
+        [[cos(a),0,sin(a),0],
+        [0,1,0,0],
         [-sin(a),0,cos(a),0],
-        [0,      0,0,     1]];
+        [0,0,0,1]];
 
 
     return multiply(rotacao,mat);

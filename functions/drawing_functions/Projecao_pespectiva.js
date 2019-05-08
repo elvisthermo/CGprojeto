@@ -10,6 +10,8 @@ function perspective(P, d){
 
     let out = multiply(ident,P);
 
+    console.log("------teste:",out);
+
 
 
     for(let i=0;i<out[3].length; i++){

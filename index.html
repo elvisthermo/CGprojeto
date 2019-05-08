@@ -8,21 +8,20 @@
     <script src="libs/bootstrap.bundle.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
-    <script src="functions/frameBuffer.js"></script>
-    <script src="functions/bresenham.js"></script>
-    <script src="functions/MidpointCircle.js"></script>
-    <script src="functions/floodfill.js"></script>
-    <script src="functions/scanline.js"></script>
-    <script src="functions/poligons.js"></script>
-    <script src="functions/Lines_Clipping.js"></script>
-    <script src="functions/Polygon_Clipping.js"></script>
-    <script src="functions/mat_multipy.js"></script>
-    <script src="functions/Transforms.js"></script>
-    <script src="functions/curves_bezier.js"></script>
-    <script src="functions/Transforms3D.js"></script>
-    <script src="functions/Projecao_pespectiva.js"></script>
-    <script src="functions/Projecao_ortigrafica.js"></script>
-
+    <script src="functions/drawing_functions/frameBuffer.js"></script>
+    <script src="functions/drawing_functions/bresenham.js"></script>
+    <script src="functions/drawing_functions/MidpointCircle.js"></script>
+    <script src="functions/drawing_functions/floodfill.js"></script>
+    <script src="functions/drawing_functions/scanline.js"></script>
+    <script src="functions/drawing_functions/poligons.js"></script>
+    <script src="functions/drawing_functions/Lines_Clipping.js"></script>
+    <script src="functions/drawing_functions/Polygon_Clipping.js"></script>
+    <script src="functions/drawing_functions/mat_multipy.js"></script>
+    <script src="functions/drawing_functions/Transforms.js"></script>
+    <script src="functions/drawing_functions/curves_bezier.js"></script>
+    <script src="functions/drawing_functions/Transforms3D.js"></script>
+    <script src="functions/drawing_functions/Projecao_pespectiva.js"></script>
+    <script src="functions/drawing_functions/Projecao_ortigrafica.js"></script>
 
 
 </head>
@@ -72,23 +71,23 @@
     <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Recorte De Poligonos" onclick="poligonClipping()">Recorte De Poligonos</button>
     <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Translação" onclick="on_translate()">Translação</button>
 
-	<div class="btn-magico">
-		<button width="100%" class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Translação com Valor" onclick="on_translate_wvalue(document.getElementById('tvalue').value)">Translação com valor</button> 
-		<input  type="text" placeholder="tx, ty" class="form-control input-numero" id="tvalue"/>
-	</div>
- 
-	<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação" onclick="on_rotate()">Rotação</button>
-	
-	<div class="btn-magico">
-		<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação com Angulo" onclick="on_rotate_wangle(document.getElementById('angle').value)">Rotação com ângulo</button> 
-		<input type="text" placeholder="angulo" class="form-control input-numero" id="angle"/>
-	</div>
+    <div class="btn-magico">
+        <button width="100%" class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Translação com Valor" onclick="on_translate_wvalue(document.getElementById('tvalue').value)">Translação com valor</button>
+        <input  type="text" placeholder="tx, ty" class="form-control input-numero" id="tvalue"/>
+    </div>
 
-	<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Escala" onclick="on_scale()">Escala</button>
-	
-	<div class="btn-magico">
-		<button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Escala com Valores" onclick="on_scale_wvalue(document.getElementById('evalue').value)">Escala com Valores</button>
-		<input type="text" placeholder="sx, sy" class="form-control input-numero" id="evalue"/>
+    <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação" onclick="on_rotate()">Rotação</button>
+
+    <div class="btn-magico">
+        <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação com Angulo" onclick="on_rotate_wangle(document.getElementById('angle').value)">Rotação com ângulo</button>
+        <input type="text" placeholder="angulo" class="form-control input-numero" id="angle"/>
+    </div>
+
+    <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Escala" onclick="on_scale()">Escala</button>
+
+    <div class="btn-magico">
+        <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Escala com Valores" onclick="on_scale_wvalue(document.getElementById('evalue').value)">Escala com Valores</button>
+        <input type="text" placeholder="sx, sy" class="form-control input-numero" id="evalue"/>
     </div>
 
     <div class="btn-magico">
@@ -105,401 +104,36 @@
     </div>
 
     <div class="btn-magico">
-        <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Projeção Cavalier " onclick="on_ortogafic_especial(1, document.getElementById('cavalier').value)">Projeção Cavalier</button>
+        <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Projeção Cavalier " onclick="on_oblique(1, document.getElementById('cavalier').value)">Projeção Cavalier</button>
         <input type="text" placeholder="angulo" class="form-control input-numero" id="cavalier"/>
 
     </div>
 
     <div class="btn-magico">
-        <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Projeção Cabinet" onclick="on_ortogafic_especial(1/2, document.getElementById('cabinet').value)">Projeção Cabinet</button>
+        <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Projeção Cabinet" onclick="on_oblique(1/2, document.getElementById('cabinet').value)">Projeção Cabinet</button>
         <input type="text" placeholder="angulo" class="form-control input-numero" id="cabinet"/>
     </div>
-
-
-    <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Translação 3D" onclick="on_rotate()">Translação 3D</button>
-    <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação X" onclick="on_rotate()">Rotação X</button>
-    <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação Y " onclick="on_rotate()">Rotação Y</button>
-    <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação Z" onclick="on_rotate()">Rotação Z</button>
-    <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Escala 3D" onclick="on_rotate()">Escala 3D</button>
+    <!-- <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Translação 3D" onclick="on_tranlate3D()">Translação 3D</button>-->
+    <!--    <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação X" onclick="">Rotação X</button>-->
+    <!--    <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação Y " onclick="">Rotação Y</button>-->
+    <!--    <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Rotação Z" onclick="">Rotação Z</button>-->
+    <!--    <button class="btn btn-secondary" data-toggle="button" aria-pressed="false" value="Escala 3D" onclick="">Escala 3D</button>-->
 
 
     <button class="btn btn-danger" data-toggle="button" aria-pressed="false" value="Limpar Tela" onclick="document.location.reload(true);">Limpar Tela</button>
 
 
 </div>
+
 <script>
-    let colorBorder = "#000000";
-    let colorFill = "#1aacf2";
-    let svg = d3.select("svg");
-    let tam = 10;
-    let color = "black";
-    let pts1 =[];
-    let ptsFill;
-    let ptscircle = [];
-    let buffer = new frammeBuffer(80,80);
 
-    let borders =[[0,0],[0,65-1],[70-1,65-1],[70-1,0]];
-    poligon(borders,"#000000");
 
-    buffer.redraw(svg);
-
-    $("#colorBorder").change(function () {
-        colorBorder = $("#colorBorder").val();
-        console.log(colorBorder);
-    });
-
-    $("#colorFill").change(function () {
-        colorFill = $("#colorFill").val();
-        console.log(colorFill);
-    });
-
-
-
-    function Coords(event) {
-        let x = Math.round(event.clientX/10);
-        let y = Math.round(event.clientY/10);
-        ptsFill = [x,y];
-        pts1.push([x,y]);
-        ptscircle.push([x,y]);
-        buffer.putPixel(x,y,"black");
-        buffer.redraw(svg);
-
-        console.log(pts1);
-
-    }
-
-    function lines() {
-        buffer.setPoints(pts1,"white");
-
-        bresenham(pts1,colorBorder);
-        buffer.redraw(svg);
-        pts1 =[];
-
-    };
-
-    function Poligonos(){
-        poligon(pts1,colorBorder);
-        buffer.redraw(svg);
-        pts1 =[];
-
-    }
-
-
-    function circle(){
-        let radius;
-        if(!ptscircle[1]){
-            radius = 5;
-        }
-        else {
-            radius= Math.abs(ptscircle[0][0]-ptscircle[1][0]);
-        }
-
-        buffer.setPoints(ptscircle,"white");
-        MidpointCircle(radius, ptscircle[0][0],ptscircle[0][1],colorBorder);
-        buffer.redraw(svg);
-        ptscircle = [];
-
-
-    }
-
-    function curves(){
-        bezier(pts1,colorBorder);
-        buffer.redraw(svg);
-
-        pts1 = [];
-    }
-
-    function fill(){
-        recursivefilll(ptsFill[0],ptsFill[1],colorFill,colorBorder);
-        buffer.redraw(svg);
-
-    }
-
-    function scan(){
-        scanline(pts1,colorFill);
-        poligon(pts1,colorBorder);
-        buffer.redraw(svg);
-        pts1 = [];
-
-    }
-
-    function lineClipping() {
-        clipRext(15,15,49,49);
-        buffer.setPoints(pts1,"white");
-        // bresenham(pts1,"red");
-        cohenSutherlandClip(pts1[0][0], pts1[0][1], pts1[1][0], pts1[1][1],colorBorder);
-        poligon([[15, 15], [15, 49], [49, 49], [49, 15]],colorBorder);
-        buffer.redraw(svg);
-        pts1 =[];
-
-    };
-
-    function poligonClipping(){
-        // poligon(pts1,"black");
-        // //poligono
-        let subjectPolygon = pts1;
-        // poligno de recorte
-        let clipPolygon = [[10, 10], [50, 10], [50, 40], [10, 40]];
-
-        //poligo de entrada
-        let clippedPolygon = clip(subjectPolygon, clipPolygon);
-        // poligon(subjectPolygon,colorBorder);
-        //retangulo ou poligno de recorte
-        poligon(clipPolygon,"#000000");
-        //depois do recorte
-        poligon(clippedPolygon,colorFill);
-        buffer.redraw(svg);
-        pts1 = [];
-    }
-
-    function mat(martiz){
-        let mat =[];
-        let list = [[],[],[]];
-        for (let i = 0; i <martiz.length ; i++) {
-            list[0].push(martiz[i][0]);
-            list[1].push(martiz[i][1]);
-            list[2].push(1);
-        }
-        return list;
-
-
-    }
-
-    function inverseMat(mat) {
-        let arrTeste = [];
-        for (let j = 0; j <mat[0].length ; j++) {
-            arrTeste.push([mat[0][j],mat[1][j]]);
-
-        }
-        console.log(arrTeste);
-        return arrTeste;
-    }
-
-    function mat3d(martiz, z){
-        let mat =[];
-        let list = [[],[],[],[]];
-        for (let i = 0; i <martiz.length ; i++){
-            list[0].push(martiz[i][0]);
-            list[1].push(martiz[i][1]);
-            if (!z){
-                list[2].push(i);
-            }else{
-                list[2].push(z[i]);
-            }
-            list[3].push(1);
-
-        }
-        return list;
-
-
-    }
-
-
-    function on_translate(){
-        let tx = 0;
-        let recursiva = function () {
-            on_clear();
-            setTimeout(recursiva, 1000);
-            poligon(pts1, "red");
-            let move = mat(pts1);
-            let moved = translate(move, -pts1[0][0], -pts1[0][1]);
-
-            moved = translate(moved, tx, tx);
-
-            poligon(inverseMat(moved), colorBorder)
-
-            buffer.redraw(svg);
-            tx+=10;
-
-            if(tx>60){
-                tx=0;
-
-            }
-        }
-        recursiva();
-    }
-	
-	 function on_translate_wvalue(tvalue){
-		let x,y;
-		
-		[x,y] = tvalue.split(',');
-		
-		x = Number(x);
-		y = Number(y);
-	 
-		on_clear();
-		poligon(pts1, "red");
-		let move = mat(pts1);
-		let moved = translate(move, x, y);
-		
-		poligon(inverseMat(moved), colorBorder)
-
-		buffer.redraw(svg);
-		
-    }
-
-    function on_rotate(){
-        let ang = 1;
-        let recursiva = function () {
-            on_clear();
-            console.log("Se passaram 1 segundo!");
-            setTimeout(recursiva, 1000);
-
-            poligon(pts1, "red");
-            let move = mat(pts1);
-				let moved = translate(move, -pts1[0][0], -pts1[0][1]);
-
-            moved = rotacao(moved, ang);
-
-            moved = translate(moved, pts1[0][0], pts1[0][1]);
-            poligon(inverseMat(moved), colorBorder)
-
-            buffer.redraw(svg);
-            ang+=30;
-        }
-        recursiva();
-    }
-	
-	function on_rotate_wangle(ang){
-		on_clear();
-		console.log("Se passaram 1 segundo!");
-
-		poligon(pts1, "red");
-		let move = mat(pts1);
-		let moved = translate(move, -pts1[0][0], -pts1[0][1]);
-
-		moved = rotacao(moved, ang);
-
-		moved = translate(moved, pts1[0][0], pts1[0][1]);
-		poligon(inverseMat(moved), colorBorder)
-
-		buffer.redraw(svg);
-    }
-
-    function on_scale() {
-        let ts = -1;
-        let recursiva = function () {
-            on_clear();
-
-            console.log("Se passaram 1 segundo!");
-            setTimeout(recursiva, 500);
-
-
-            poligon(pts1, "red");
-            let move = mat(pts1);
-            let moved = translate(move, -pts1[0][0], -pts1[0][1]);
-
-            moved = scale(moved, ts, ts);
-
-            moved = translate(moved, pts1[0][0], pts1[0][1]);
-            poligon(inverseMat(moved), colorBorder)
-
-            buffer.redraw(svg);
-            ts+=0.2
-            if(ts>1.5){
-                ts=-1;
-            }
-        }
-        recursiva();
-    }
-	
-	function on_scale_wvalue(value) {
-		
-		let x,y;
-		
-		[x,y] = value.split(',');
-		
-		x = Number(x);
-		y = Number(y);
-	 
-	
-		on_clear();
-
-		poligon(pts1, "red");
-		let move = mat(pts1);
-		let moved = translate(move, -pts1[0][0], -pts1[0][1]);
-
-		moved = scale(moved, x, y);
-
-		moved = translate(moved, pts1[0][0], pts1[0][1]);
-		poligon(inverseMat(moved), colorBorder)
-
-		buffer.redraw(svg);
-	}
-
-	
-
-    function on_pespective(fuga){
-        fuga = Number(fuga);
-
-
-        poligon(pts1,"red");
-        let move =mat3d(pts1);
-        let moved = translate3D(move,-pts1[0][0],-pts1[0][1],1);
-
-        moved = perspective(moved, fuga);
-
-        moved = translate3D(moved,pts1[0][0],pts1[0][1],1);
-        poligon(inverseMat(moved),colorBorder)
-
-        buffer.redraw(svg);
-
-    }
-
-    function on_ortogafic(tvalue){
-        let ang, value;
-
-        [ang, value] = tvalue.split(',');
-
-        ang = Number(ang);
-        value = Number(value);
-
-        if(!ang)
-            ang = 30;
-        if(!value)
-            value=1/2;
-
-        poligon(pts1,"red");
-        let move = mat3d(pts1, );
-        let moved = translate3D(move,-pts1[0][0],-pts1[0][1],1);
-
-        moved = Oblique_Projection(moved,ang,value);
-
-        moved = translate3D(moved,pts1[0][0],pts1[0][1],1);
-        poligon(inverseMat(moved),colorBorder)
-
-        buffer.redraw(svg);
-
-    }
-
-    function on_ortogafic_especial(value, ang){
-
-        ang = Number(ang);
-        value = Number(value);
-
-        poligon(pts1,"red");
-        let move = mat3d(pts1, );
-        let moved = translate3D(move,-pts1[0][0],-pts1[0][1],1);
-
-        moved = Oblique_Projection(moved,ang,value);
-
-        moved = translate3D(moved,pts1[0][0],pts1[0][1],1);
-        poligon(inverseMat(moved),colorBorder)
-
-        buffer.redraw(svg);
-
-    }
-
-
-
-    function on_clear(){
-		buffer.clear();
-        poligon(borders,"#000000");
-        buffer.redraw(svg);
-    
-}
 
 </script>
+
+<script src="functions/main.js"></script>
+
+
 
 </body>
 </html>
